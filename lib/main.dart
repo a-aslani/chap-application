@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/pages/home_page.dart';
+import 'package:mobile/pages/home_page_screen.dart';
 import 'package:mobile/pages/login_screen.dart';
 import 'package:mobile/pages/register_screen.dart';
 import 'package:mobile/pages/splash_screen.dart';
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         "/": (context) => Directionality(textDirection: TextDirection.rtl, child: SplashScreen()),
-        "/home": (context) => Directionality(textDirection: TextDirection.rtl, child: HomePage()),
+        "/home": (context) => Directionality(textDirection: TextDirection.rtl, child: HomeScreen()),
         "/login": (context) => Directionality(textDirection: TextDirection.rtl, child: LoginScreen()),
         "/register": (context) => Directionality(textDirection: TextDirection.rtl, child: RegisterScreen())
       },

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/components/button/rounded_button.dart';
-import 'package:mobile/components/login/register_form.dart';
+import 'package:mobile/components/pages/login/register_form.dart';
 import 'package:mobile/components/text/large_text.dart';
 import 'package:mobile/service/api/api_service.dart';
 

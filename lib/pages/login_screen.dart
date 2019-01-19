@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/components/button/rounded_button.dart';
-import 'package:mobile/components/login/phone_number_form.dart';
+import 'package:mobile/components/pages/login/phone_number_form.dart';
 import 'package:mobile/components/text/large_text.dart';
 import 'package:mobile/pages/login_verify_code_screen.dart';
 import 'package:mobile/service/api/api_service.dart';

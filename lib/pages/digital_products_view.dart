@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/components/home/product_card.dart';
-import 'package:mobile/components/home/propery_banner.dart';
+import 'package:mobile/components/pages/home/product_card.dart';
+import 'package:mobile/components/pages/home/propery_banner.dart';
 
 class DigitalProductsView extends StatefulWidget {
   @override

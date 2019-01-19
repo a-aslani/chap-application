@@ -3,14 +3,14 @@ import 'package:mobile/components/drawer_layout.dart';
 import 'package:mobile/pages/digital_products_view.dart';
 import 'package:mobile/pages/offset_products_view.dart';
 
-class HomePage extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
-  HomePageState createState() {
-    return new HomePageState();
+  HomeScreenState createState() {
+    return new HomeScreenState();
   }
 }
 
-class HomePageState extends State<HomePage>
+class HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
 
   TabController _tabController;

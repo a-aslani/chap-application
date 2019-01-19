@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/pages/product_types.dart';
+import 'package:mobile/pages/product_types_screen.dart';
 
 class ProductCard extends StatelessWidget {
   @override
@@ -8,7 +8,7 @@ class ProductCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 8.0),
       child: InkWell(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => Directionality(textDirection: TextDirection.rtl, child: ProductTypes())));
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => Directionality(textDirection: TextDirection.rtl, child: ProductTypesScreen())));
         },
         child: Row(
           children: <Widget>[
