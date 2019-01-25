@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/pages/home_page_screen.dart';
+import 'package:mobile/pages/home_screen.dart';
 import 'package:mobile/pages/login_screen.dart';
 import 'package:mobile/pages/register_screen.dart';
 import 'package:mobile/pages/splash_screen.dart';
@@ -15,11 +15,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
 //        accentColor: Color(0xFFDBF0E5),
-        accentColor: Color(0xFF42a5f5).withAlpha(40),
+//        accentColor: Color(0xFF42a5f5).withAlpha(40),
+        accentColor: Color(0xFFFF5646),
 //        primaryColor: Color(0xFF129C59),
-        primaryColor: Color(0xFF1976d2),
+//        primaryColor: Color(0xFF1976d2),
+        primaryColor: Color(0xFFFF5646),
 //        backgroundColor: Color(0xFFF0EDF1),
-        backgroundColor: Color(0xFFFAFAFA),
+//        backgroundColor: Color(0xFFFAFAFA),
+        backgroundColor: Color(0xFFFAF8F8),
         fontFamily: "IranYekan",
       ),
       routes: {

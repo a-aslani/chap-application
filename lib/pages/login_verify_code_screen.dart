@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/components/button/rounded_button.dart';
 import 'package:mobile/components/pages/login/verify_code_form.dart';
+import 'package:mobile/components/snackbar/app_snackbar.dart';
 import 'package:mobile/components/text/large_text.dart';
 import 'package:mobile/service/api/api_service.dart';
 import 'package:mobile/service/prefs.dart';
@@ -35,9 +36,11 @@ class LoginVerifyCodeScreenState extends State<LoginVerifyCodeScreen> {
     if(_formKey.currentState.validate()) {
       _formKey.currentState.save();
 
+
       setState(() {
         _isSending = true;
       });
+
       try {
         var response = await ApiService().sendVerifyCode(widget.phoneNumber, _verifyCode);
         if(!response["state"]) {
@@ -56,18 +59,33 @@ class LoginVerifyCodeScreenState extends State<LoginVerifyCodeScreen> {
           saveApiToken(response["data"]["api_token"]);
 
           if(!response["data"]["is_new_user"]) {
-            var user = await ApiService().fetchUser();
-            setFullName(user["name"], user["family"]);
-            Navigator.of(context).pushReplacementNamed("/home");
+
+
+            try {
+
+              var user = await ApiService().fetchUser();
+              await setFullName(user["name"], user["family"]);
+              Navigator.of(context).pushReplacementNamed("/home");
+
+            }catch(e) {
+
+              setState(() {
+                _isSending = false;
+              });
+              AppSnackbar.show(_scaffoldKey, e.toString(), 5);
+            }
+
           }else {
             Navigator.of(context).pushReplacementNamed("/register");
           }
         }
 
-      }catch(e) {
+      } catch(e) {
+
         setState(() {
           _isSending = false;
         });
+
         _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text(e.toString(), style: TextStyle(fontFamily: "IranYekan")), duration: Duration(seconds: 7)));
       }
 

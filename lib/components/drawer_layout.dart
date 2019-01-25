@@ -50,7 +50,8 @@ class DrawerLayoutState extends State<DrawerLayout> {
             leading: Icon(Icons.home),
             title: Text("خانه"),
             onTap: () {
-              Navigator.of(context).popAndPushNamed("/");
+              Navigator.of(context).popAndPushNamed("/home");
+              Navigator.of(context).pop();
             },
           ),
           ListTile(

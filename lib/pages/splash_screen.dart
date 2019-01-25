@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/service/api/api_service.dart';
 import 'package:mobile/service/prefs.dart';
+import 'package:mobile/service/application.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -28,16 +29,37 @@ class SplashScreenState extends State<SplashScreen> {
   }
 
   _checkUserLoggedIn() async {
-    try {
-      var response = await ApiService().fetchUser();
-      if(response["name"] == null) {
-        Navigator.of(context).pushReplacementNamed("/register");
-      } else {
-        setFullName(response["name"], response["family"]);
-        Navigator.of(context).pushReplacementNamed("/home");
+    if(await ApplicationService().isConnected()) {
+      try {
+        var response = await ApiService().fetchUser();
+        if(response["name"] == null) {
+          Navigator.of(context).pushReplacementNamed("/register");
+        } else {
+          setFullName(response["name"], response["family"]);
+          Navigator.of(context).pushReplacementNamed("/home");
+        }
+      } catch (e) {
+        Navigator.of(context).pushReplacementNamed("/login");
       }
-    } catch (e) {
-      Navigator.of(context).pushReplacementNamed("/login");
+    } else {
+
+      showDialog(
+          context: context,
+          barrierDismissible: false, // user must tap button!
+          builder: (context) => Directionality(textDirection: TextDirection.rtl, child: AlertDialog(
+            title: Text("اینترنت"),
+            content: Text("از دسترسی به اینترنت اطمینان حاصل نمایید."),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('تلاش مجدد', style: TextStyle(color: Theme.of(context).primaryColor)),
+                onPressed: () {
+                  _checkUserLoggedIn();
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ))
+      );
     }
   }
 }

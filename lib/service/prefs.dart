@@ -23,7 +23,7 @@ Future<String> apiToken() async {
   return apiToken;
 }
 
-setFullName(String name, String family) async {
+Future setFullName(String name, String family) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString("user.name", name);
   prefs.setString("user.family", family);

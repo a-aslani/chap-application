@@ -42,7 +42,7 @@ class ApiService {
       final token = await apiToken();
       setUserToken(token);
       final response = await api().get("v1/user",
-          options: Options(headers: {AUTHORIZATION: BEARER + token}));
+          options: Options(headers: {AUTHORIZATION: BEARER + token, "Accept": "application/json"}));
       return response.data["data"];
     } on DioError catch (e) {
       if (e.response.statusCode == 401) {
@@ -62,11 +62,10 @@ class ApiService {
     }
   }
 
-  Future<Map<String, dynamic>> sendVerifyCode(
-      String phoneNumber, String verifyCode) async {
+  Future<Map<String, dynamic>> sendVerifyCode(String phoneNumber, String verifyCode) async {
+
     try {
-      final response = await api()
-          .post("v1/verify/$phoneNumber", data: {"verify_code": verifyCode});
+      final response = await api().post("v1/verify/$phoneNumber", data: {"verify_code": verifyCode});
 
       setUserToken(response.data["data"]["api_token"]);
 
@@ -97,10 +96,36 @@ class ApiService {
     try {
       final response = await apiAuth().post("v1/register", data: {"name": name, "family": family});
       setFullName(name, family);
-      print("ok");
       return response.data["data"];
     } on DioError catch(e) {
-      print("no");
+      throw Exception(e.message);
+    }
+  }
+
+  Future<Map<String, dynamic>> fetchAllProducts(String type,{int page: 1}) async {
+
+    try {
+
+      final response = await api().get("v1/products/$type?page=$page");
+
+      return response.data;
+
+    } on DioError catch(e) {
+
+      throw Exception(e.message);
+
+    }
+  }
+
+  Future<Map<String, dynamic>> fetchSubProducts(int productId, {int page: 1}) async {
+
+    try {
+
+      final response = await api().get("v1/sub-products/$productId?page=$page");
+
+      return response.data;
+
+    } on DioError catch(e) {
       throw Exception(e.message);
     }
   }
